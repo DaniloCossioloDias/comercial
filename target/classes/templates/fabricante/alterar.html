@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Fabricante</title>
+</head>
+<body>
+	<nav>
+		<div>
+			<div>
+				<ul>
+					<li><a th:href="@{/index-home}">Home</a></li>
+					<li><a th:href="@{/fabricante/fabricanteIndex}">Fabricante</a></li>
+					<li><a th:href="@{/grupo/grupoIndex}">Grupo</a></li>
+					<li><a th:href="@{/subgrupo/subGrupoIndex}">SubGrupo</a></li>
+					<li><a th:href="@{/produto/produtoIndex}">Produto</a></li>
+					<li><a th:href="@{/vendas/vendasIndex}">Vendas</a></li>
+					<li>Admin</li>
+					<li>
+						<form action="/comercial/login/access" method="GET">
+                            <button type="submit">Logout</button>
+                        </form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div>
+		<h3>Alterar Fabricante</h3>
+
+		<a th:href="@{/fabricante/fabricanteIndex}">Voltar</a>
+
+		<form th:action="@{'/fabricante/alterar-fabricante/'+${id}}"  th:object="${fabricante}" method="post">
+
+			<!-- ID -->
+			<div>
+				<label for="id">ID</label>
+				<input type="text" 
+						id="id" 
+						name="ID"
+						th:value="*{id}" 
+						readonly="readonly">
+			</div>
+
+
+			<!-- Nome Fantasia -->
+			<div>
+				<label for="nomeFantasia">Nome Fantasia</label> 
+				<input type="text"
+					   id="nomeFantasia" 
+					   name="nomeFantasia" 
+					   th:text="${nomeFantasia}"
+					   th:value="*{nomeFantasia}" 
+					   placeholder="Digite o Nome Fantasia">
+			</div>
+
+			<!-- Razão Social -->
+			<div>
+				<label for="razaoSocial">Razão Social</label> 
+				<input type="text"
+					   id="razaoSocial" 
+					   name="razaoSocial" 
+					   th:text="${razaoSocial}"
+					   th:value="*{razaoSocial}" 
+					   placeholder="Digite a Razão Social">
+			</div>
+
+			<!-- CNPJ -->
+			<div>
+				<label for="cnpj">CNPJ</label> 
+				<input type="text" 
+					   id="cnpj"
+					   name="cnpj" 
+					   th:text="${cnpj}" 
+					   th:value="*{cnpj}"
+				       placeholder="Digite o CNPJ">
+			</div>
+
+			<!-- Endereço -->
+			<div>
+				<label for="endereco">Endereço</label> 
+				<input type="text"
+					   id="endereco" 
+					   name="endereco" 
+					   th:text="${endereco}"
+					   th:value="*{endereco}" 
+					   placeholder="Digite o Endereço">
+			</div>
+
+			<!-- Telefone -->
+			<div>
+				<label for="telefone">Telefone</label> 
+				<input type="text"
+					   id="telefone" 
+					   name="telefone" 
+					   th:text="${telefone}"
+					   th:value="*{telefone}" 
+					   placeholder="Digite o Telefone">
+			</div>
+
+			<!-- Email -->
+			<div>
+				<label for="email">Email</label> 
+				<input type="email" id="email"
+					   name="email" 
+					   th:text="${email}" 
+					   th:value="*{email}"
+					   placeholder="Digite o Email">
+			</div>
+
+			<!-- Vendedor -->
+			<div>
+				<label for="vendedor">Vendedor</label> 
+				<input type="text"
+					   id="vendedor" 
+					   name="vendedor" 
+					   th:text="${vendedor}"
+					   th:value="*{vendedor}" 
+					   placeholder="Digite o Nome do Vendedor">
+			</div>
+
+			<!-- Botão de envio -->
+			<button type="submit">Salvar</button>
+		</form>
+	</div>
+</body>
+</html>

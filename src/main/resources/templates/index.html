@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Sistema de Vendas de Produtos Naturais</title>
+</head>
+<body>
+    <nav>
+        <div>
+            <div>
+                <ul>
+                    <li><a th:href="@{/index-home}">Home</a></li>
+                    <li><a th:href="@{/fabricante/fabricanteIndex}">Fabricante</a></li>
+                    <li><a th:href="@{/grupo/grupoIndex}">Grupo</a></li>
+                    <li><a th:href="@{/subgrupo/subGrupoIndex}">SubGrupo</a></li>
+                    <li><a th:href="@{/produto/produtoIndex}">Produto</a></li>
+                    <li><a th:href="@{/vendas/vendasIndex}">Vendas</a></li>
+                    <li>Admin</li>
+                    <li>
+                        <form action="/comercial/login/access" method="GET">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

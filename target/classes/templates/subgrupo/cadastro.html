@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>SubGrupo</title>
+</head>
+<body>
+	<nav>
+		<div>
+			<div>
+				<ul>
+					<li><a th:href="@{/index-home}">Home</a></li>
+					<li><a th:href="@{/fabricante/fabricanteIndex}">Fabricante</a></li>
+					<li><a th:href="@{/grupo/grupoIndex}">Grupo</a></li>
+					<li><a th:href="@{/subgrupo/subGrupoIndex}">SubGrupo</a></li>
+					<li><a th:href="@{/produto/produtoIndex}">Produto</a></li>
+					<li><a th:href="@{/vendas/vendasIndex}">Vendas</a></li>
+					<li>Admin</li>
+					<li>
+						<form action="/comercial/login/access" method="GET">
+                            <button type="submit">Logout</button>
+                        </form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div>
+		<h3>Cadastro de SubGrupo</h3>
+		
+		<a th:href="@{/subgrupo/subGrupoIndex}">Voltar</a>
+		
+		<form th:action="@{/subgrupo/save-subgrupo}" th:object="${subgrupo}" method="post">
+
+			<!-- Nome -->
+			<div>
+				<label for="nomeSubGrupo">Nome</label> 
+				<input type="text"
+					   id="nomeSubGrupo" 
+					   name="nomeSubGrupo"
+					   th:field="*{nomeSubGrupo}" 
+					   placeholder="Digite o Nome">
+			</div>
+
+			<!-- Grupo -->
+			<div>
+				<label for="grupo">Grupo</label> 
+		        <select id="grupo" th:field="*{grupo}">
+		            <option value="" disabled selected>Selecione um Grupo</option>
+		            <option th:each="grupo : ${grupos}" th:value="${grupo.id}" th:text="${grupo.nomeGrupo}"></option>
+		        </select>
+			</div>
+
+			<!-- Botão de envio -->
+			<button type="submit" class="btn btn-primary">Salvar</button>
+
+		</form>
+	</div>
+</body>
+</html>

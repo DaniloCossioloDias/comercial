@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Vendas</title>
+</head>
+<body>
+	<nav>
+		<div>
+			<div>
+				<ul>
+					<li><a th:href="@{/index-home}">Home</a></li>
+					<li><a th:href="@{/fabricante/fabricanteIndex}">Fabricante</a></li>
+					<li><a th:href="@{/grupo/grupoIndex}">Grupo</a></li>
+					<li><a th:href="@{/subgrupo/subGrupoIndex}">SubGrupo</a></li>
+					<li><a th:href="@{/produto/produtoIndex}">Produto</a></li>
+					<li><a th:href="@{/vendas/vendasIndex}">Vendas</a></li>
+					<li>Admin</li>
+					<li>
+						<form action="/comercial/login/access" method="GET">
+                            <button type="submit">Logout</button>
+                        </form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div>
+		<div>
+			<h3>Lista de Vendas</h3>
+
+			<a th:href="@{/vendas/vendasSave}">Novo</a>
+
+		</div>
+		<div>
+			<div>
+				<table id="dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th>Id Venda</th>
+							<th>Data Venda</th>
+							<th>Produto</th>
+							<th>Quantidade</th>
+							<th>Valor</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="vendas : ${vendas}">
+							<td th:text="${vendas.id}" />
+							<td th:text="${vendas.id}" />
+							<td th:text="${vendas.dataVenda}" />
+							<td th:text="${vendas.qtd}" />
+							<td th:text="${vendas.vlrTotal}" />
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

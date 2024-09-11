@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Alterar Grupo</title>
+</head>
+<body>
+	<nav>
+		<div>
+			<div>
+				<ul>
+					<li><a th:href="@{/index-home}">Home</a></li>
+					<li><a th:href="@{/fabricante/fabricanteIndex}">Fabricante</a></li>
+					<li><a th:href="@{/grupo/grupoIndex}">Grupo</a></li>
+					<li><a th:href="@{/subgrupo/subGrupoIndex}">SubGrupo</a></li>
+					<li><a th:href="@{/produto/produtoIndex}">Produto</a></li>
+					<li><a th:href="@{/vendas/vendasIndex}">Vendas</a></li>
+					<li>Admin</li>
+					<li>
+						<form action="/comercial/login/access" method="GET">
+                            <button type="submit">Logout</button>
+                        </form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div>
+		<h3>Alterar Grupo</h3>
+
+		<a th:href="@{/grupo/grupoIndex}">Voltar</a>
+
+		<form th:action="@{'/grupo/alterar-grupo/'+${grupo.id}}"  th:object="${grupo}" method="post">
+
+			<!-- ID -->
+			<div>
+				<label for="id">ID</label>
+				<input type="text" 
+					   id="id" 
+					   name="ID"
+					   th:value="*{id}" 
+					   readonly="readonly">
+			</div>
+
+			<!-- Nome -->
+			<div>
+				<label for="nomeGrupo">Nome</label> 
+				<input type="text"
+					   id="nomeGrupo" 
+					   name="nomeGrupo"
+					   th:field="*{nomeGrupo}" 
+					   placeholder="Digite o Nome">
+			</div>
+
+			<!-- Botão de envio -->
+			<button type="submit">Salvar</button>
+		</form>
+	</div>
+</body>
+</html>

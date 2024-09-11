@@ -1,0 +1,28 @@
+<!-- login/register.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registrar Conta</title>
+</head>
+<body>
+    <h2>Criar Conta</h2>
+    <form action="/comercial/login/register" method="post">
+        <label for="nomeUser">Nome:</label>
+        <input type="text" id="nomeUser" name="nomeUser" required><br>
+        <label for="emailUser">Email:</label>
+        <input type="email" id="emailUser" name="emailUser" required><br>
+        <label for="senhaUser">Senha:</label>
+        <input type="password" id="senhaUser" name="senhaUser" required><br>
+        <button type="submit">Criar Conta</button>
+    </form>
+    
+    <form action="/comercial/login/access" method="GET">
+    	<p>Ja possui conta?</p>
+    	<button type="submit">Clique aqui</button>
+   	</form>
+
+    <div th:if="${success}">
+        <p th:text="${success}"></p>
+    </div>
+</body>
+</html>

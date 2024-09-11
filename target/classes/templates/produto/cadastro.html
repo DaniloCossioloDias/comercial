@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>SubGrupo</title>
+</head>
+<body>
+	<nav>
+		<div>
+			<div>
+				<ul>
+					<li><a th:href="@{/index-home}">Home</a></li>
+					<li><a th:href="@{/fabricante/fabricanteIndex}">Fabricante</a></li>
+					<li><a th:href="@{/grupo/grupoIndex}">Grupo</a></li>
+					<li><a th:href="@{/subgrupo/subGrupoIndex}">SubGrupo</a></li>
+					<li><a th:href="@{/produto/produtoIndex}">Produto</a></li>
+					<li><a th:href="@{/vendas/vendasIndex}">Vendas</a></li>
+					<li>Admin</li>
+					<li>
+						<form action="/comercial/login/access" method="GET">
+                            <button type="submit">Logout</button>
+                        </form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div>
+		<h3>Cadastro de SubGrupo</h3>
+		
+		<a th:href="@{/produto/produtoIndex}">Voltar</a>
+		
+		<form th:action="@{/produto/save-produto}" th:object="${produto}" method="post">
+
+			<!-- Nome -->
+			<div>
+				<label for="nomeProduto">Nome</label> 
+				<input type="text"
+					   id="nomeProduto" 
+					   name="nomeProduto"
+					   th:field="*{nomeProduto}" 
+					   placeholder="Digite o Nome">
+			</div>
+
+			<!-- Preco -->
+			<div>
+				<label for="precoVenda">Preço</label> 
+				<input type="text"
+					   id="precoVenda" 
+					   name="precoVenda"
+					   th:field="*{precoVenda}" 
+					   placeholder="Digite o Preço">
+			</div>
+
+			<!-- SubGrupo -->
+			<div>
+				<label for="subGrupo">SubGrupo</label> 
+		        <select id="subGrupo" th:field="*{subGrupo}">
+		            <option value="" disabled selected>Selecione um SubGrupo</option>
+		            <option th:each="subgrupo : ${subgrupos}" th:value="${subgrupo.id}" th:text="${subgrupo.nomeSubGrupo}"></option>
+		        </select>
+			</div>
+
+
+			<!-- Fabricante -->
+			<div>
+				<label for="fabricante">Fabricante</label> 
+		        <select id="fabricante" th:field="*{fabricante}">
+		            <option value="" disabled selected>Selecione um Grupo</option>
+		            <option th:each="fabricante : ${fabricantes}" th:value="${fabricante.id}" th:text="${fabricante.nomeFantasia}"></option>
+		        </select>
+			</div>
+
+			<!-- Botão de envio -->
+			<button type="submit" class="btn btn-primary">Salvar</button>
+
+		</form>
+	</div>
+</body>
+</html>

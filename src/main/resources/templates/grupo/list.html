@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Grupo</title>
+</head>
+<body>
+	<nav>
+		<div>
+			<div>
+				<ul>
+					<li><a th:href="@{/index-home}">Home</a></li>
+					<li><a th:href="@{/fabricante/fabricanteIndex}">Fabricante</a></li>
+					<li><a th:href="@{/grupo/grupoIndex}">Grupo</a></li>
+					<li><a th:href="@{/subgrupo/subGrupoIndex}">SubGrupo</a></li>
+					<li><a th:href="@{/produto/produtoIndex}">Produto</a></li>
+					<li><a th:href="@{/vendas/vendasIndex}">Vendas</a></li>
+					<li>Admin</li>
+					<li>
+						<form action="/comercial/login/access" method="GET">
+                            <button type="submit">Logout</button>
+                        </form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div>
+		<div>
+			<h3>Lista de Grupo</h3>
+
+			<a th:href="@{/grupo/grupoSave}">Novo</a>
+
+		</div>
+		<div>
+			<div>
+				<table id="dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nome</th>
+							<th>Alterar</th>
+							<th>Excluir</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="grupo : ${grupo}">
+							<td th:text="${grupo.id}" />
+							<td th:text="${grupo.nomeGrupo}" />
+							<td><a href="" th:href="@{'/grupo/grupoUpdate/'+${grupo.id}}" style="color: blue;" class="nav-link">Alterar</a></td>
+							<td><a href="" th:href="@{'/grupo/deletar-grupo/'+${grupo.id}}" style="color: red;" class="nav-link">Excluir</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

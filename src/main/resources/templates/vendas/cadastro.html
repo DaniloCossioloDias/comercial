@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Vendas</title>
+</head>
+<body>
+	<nav>
+		<div>
+			<div>
+				<ul>
+					<li><a th:href="@{/index-home}">Home</a></li>
+					<li><a th:href="@{/fabricante/fabricanteIndex}">Fabricante</a></li>
+					<li><a th:href="@{/grupo/grupoIndex}">Grupo</a></li>
+					<li><a th:href="@{/subgrupo/subGrupoIndex}">SubGrupo</a></li>
+					<li><a th:href="@{/produto/produtoIndex}">Produto</a></li>
+					<li><a th:href="@{/vendas/vendasIndex}">Vendas</a></li>
+					<li>Admin</li>
+					<li>
+						<form action="/comercial/login/access" method="GET">
+                            <button type="submit">Logout</button>
+                        </form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<div>
+		<h3>Cadastro de Vendas</h3>
+		
+		<a th:href="@{/vendas/vendasIndex}">Voltar</a>
+		
+		<form th:object="${venda}" th:action=@{/vendas/incluirVendas} method="post">
+		
+			<!-- Data Venda -->
+		    <div>
+		        <label for="dataVenda">Data Venda</label> 
+		        <input type="datetime-local"
+		               id="dataVenda" 
+		               name="dataVenda"
+		               th:field="*{dataVenda}">
+		    </div>
+
+			<!-- Produto -->
+			<div>
+				<label for="produtos">Produto</label> 
+		        <select id="produtos" th:field="*{produtos}">
+		            <option value="">Selecione um Produto</option>
+		            <option th:each="produto : ${produtos}" th:value="${produto.id}" th:text="${produto.nomeProduto + ' - R$ ' + produto.precoVenda}"></option>
+		        </select>
+			</div>
+
+			<!-- Quantidade -->
+			<div>
+				<label for="qtd">Quantidade</label> 
+				<input type="text"
+					   id="qtd" 
+					   name="qtd" 
+					   th:field="*{qtd}"
+					   placeholder="Digite a Quantidade">
+			
+			<!-- Botão de envio -->
+			<button type="submit" class="btn btn-primary">Incluir Venda</button>
+
+		</form>
+
+		<form th:object="${vendaprodutos}" th:action=@{/vendas/save-vendas} method="post">	
+			<table id="dataTable" width="100%" cellspacing="0">
+				<tr>
+					<th>Produto</th>
+					<th>Valor Unitário</th>
+					<th>Quantidade</th>
+					<th>Valor Total</th>
+					<th>Excluir</th>
+				</tr>
+	            <tr th:each="pv, iterStat : ${vendaprodutos}">
+	                <td th:text="${pv.id + '-' + pv.nomeProduto}">
+	                    <input type="hidden" th:field="*{vendaprodutos[__${iterStat.index}__].id}" />
+	                    <input type="hidden" th:field="*{vendaprodutos[__${iterStat.index}__].nomeProduto}" />
+	                </td>
+	                <td th:text="${pv.precoVenda}">
+	                    <input type="hidden" th:field="*{vendaprodutos[__${iterStat.index}__].precoVenda}" />
+	                </td>
+	                <td th:text="${pv.qtdVenda}">
+	                    <input type="hidden" th:field="*{vendaprodutos[__${iterStat.index}__].qtdVenda}" />
+	                </td>
+	                <td th:text="${pv.vlrVenda}">
+	                    <input type="hidden" th:field="*{vendaprodutos[__${iterStat.index}__].vlrVenda}" />
+	                </td>
+	                <td><a style="color: red;" class="nav-link">Excluir</a></td>
+	            </tr>
+			</table>		
+			<label th:text="'Valor Total R$ ' + ${vlrTotal}"></label>
+				<!-- Botão de envio -->
+			<button type="submit" class="btn btn-primary">Fechar Venda</button>
+		</form>	
+	</div>
+</body>
+</html>

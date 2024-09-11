@@ -1,0 +1,28 @@
+<form th:action="@{'/subgrupo/alterar-subgrupo/' + ${subgrupo.id}}" th:object="${subgrupo}" method="post">
+    <!-- ID -->
+    <div>
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id" th:value="*{id}" readonly="readonly">
+    </div>
+
+    <!-- Nome -->
+    <div>
+        <label for="nomeSubGrupo">Nome</label>
+        <input type="text" id="nomeSubGrupo" name="nomeSubGrupo" th:field="*{nomeSubGrupo}" placeholder="Digite o Nome">
+    </div>
+
+    <!-- Grupo -->
+    <div>
+        <label for="grupo">Grupo</label>
+        <select id="grupo" th:field="*{grupo}">
+            <option value="" disabled selected>Selecione um Grupo</option>
+            <option th:each="grupo : ${grupos}" 
+                    th:value="${grupo.id}" 
+                    th:text="${grupo.nomeGrupo}"
+                    th:selected="${grupo.id == subgrupo.grupo.id}"></option>
+        </select>
+    </div>
+
+    <!-- Botão de envio -->
+    <button type="submit">Salvar</button>
+</form>
